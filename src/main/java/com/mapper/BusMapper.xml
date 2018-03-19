@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.IBusDao">
+	<resultMap id="busMap" type="com.bean.Bus">
+		<id property="id" column="id"></id>
+		<result property="type" column="type"></result>
+		<result property="seatsMessage" column="seats_message"></result>
+	</resultMap>
+	<insert id="add">
+		insert into bus(type,seats_message) values(#{type},#{seatsMessage})
+	</insert>
+	<select id="findAll" resultMap="busMap">
+		select * from bus
+	</select>
+	<select id="findById" resultMap="busMap">
+		select * from bus where id=#{bus.id}
+	</select>
+	<select id="findByPage" resultMap="busMap">
+		select * from bus limit #{startRow},#{pageSize}
+	</select>
+	<update id="update">
+		update bus set 
+			id=#{id},
+			type=#{type},
+			total=#{total},
+			last=#{last},
+			seats_message=#{seatsMessage} where id=#{id}
+	</update>
+</mapper>
